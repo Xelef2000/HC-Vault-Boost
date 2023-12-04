@@ -1,0 +1,9 @@
+**.terraform*
+**.planfile
+**terraform.tfvars
+**terraform.tfvars.json
+**terraform.tfstate
+**terraform.tfstate.backup
+**cluster-keys.json
+**hosts
+**prometheus-token
