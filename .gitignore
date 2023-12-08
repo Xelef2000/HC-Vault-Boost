@@ -7,3 +7,5 @@
 **cluster-keys.json
 **hosts
 **prometheus-token
+enviroment/Vault-Deployment/passwords.csv
+enviroment/Vault-Deployment/cluster-keys-dr.json

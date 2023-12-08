@@ -26,7 +26,7 @@ resource "null_resource" "argo_gitops" {
   depends_on = [time_sleep.argo-sleep]
   
   provisioner "local-exec" {
-    command = ""
+    command = "./init-argo.sh"
   }
 }
 
