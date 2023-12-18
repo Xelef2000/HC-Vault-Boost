@@ -9,3 +9,6 @@
 **prometheus-token
 enviroment/Vault-Deployment/passwords.csv
 enviroment/Vault-Deployment/cluster-keys-dr.json
+enviroment/Deploy-Enviroment/passwords.csv
+enviroment/Deploy-Enviroment/cluster-keys-autounseal.json
+enviroment/Deploy-Enviroment/cluster-keys-dr.json

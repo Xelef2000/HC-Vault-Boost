@@ -25,6 +25,7 @@ echo -e "#the cleanup script will delete everything between this tags" | sudo te
 add_ingress_to_hosts "argocd-server" "infra-argocd" "argocd.vault-boost.lab"
 add_ingress_to_hosts "vault-primary" "vault-primary" "vault-primary.vault-boost.lab"
 add_ingress_to_hosts "vault-dr" "vault-dr" "vault-dr.vault-boost.lab"
+add_ingress_to_hosts "vault-autounseal" "vault-autounseal" "vault-autounseal.vault-boost.lab"
 
 
 

@@ -38,7 +38,7 @@ resource "tls_self_signed_cert" "vault" {
   validity_period_hours = 1680
 
   ip_addresses = ["127.0.0.1"]
-  dns_names    = ["localhost", "vault", "vault-primary-active", "vault-primary", "vault-primary-internal", "vault-primary-standby", "vault-primary.vault-boost.lab", "vault-dr-active", "vault-dr", "vault-dr-internal", "vault-dr-standby", "vault-dr.vault-boost.lab", "vault-primary-active.vault-primary.svc.cluster.local", "vault-dr-active.vault-dr.svc.cluster.local"]
+  dns_names    = ["localhost", "vault", "vault-primary-active", "vault-primary", "vault-primary-internal", "vault-primary-standby", "vault-primary.vault-boost.lab", "vault-dr-active", "vault-dr", "vault-dr-internal", "vault-dr-standby", "vault-dr.vault-boost.lab", "vault-primary-active.vault-primary.svc.cluster.local", "vault-dr-active.vault-dr.svc.cluster.local", "vault-cluster-api-dr.vault-dr.svc.cluster.local", "vault-cluster-api-primary.vault-primary.svc.cluster.local", "vault-autounseal-active", "vault-autounseal", "vault-autounseal-internal", "vault-autounseal-standby", "vault-autounseal.vault-boost.lab", "vault-autounseal-active.vault-autounseal.svc.cluster.local", "vault-cluster-api-dr.vault-autounseal.svc.cluster.local"]
 
   allowed_uses = [
     "key_encipherment",
