@@ -16,6 +16,7 @@ terraform init
 terraform apply
 ```
 
+
 Now refresh the argocd deployments:
 ``` bash
 kubectl -n infra-argocd port-forward service/argocd-server 8080:443

@@ -31,29 +31,5 @@ resource "null_resource" "argo_gitops" {
 }
 
 
-# resource "helm_release" "vault" {
-#   name       = "vault"
-#   repository = "https://helm.releases.hashicorp.com"
-#   chart      = "vault"
-#   # version    = var.vault_helm_chart_version
-#   namespace = kubernetes_namespace.vault.metadata[0].name
-#   wait      = false
-
-#   values = [
-#     "${templatefile("./values/vault-values.yaml", {})}"
-#   ]
-
-#   depends_on = [
-#     kubernetes_namespace.playground-namespace,
-#     kubernetes_secret.vault_certs,
-#     kubernetes_secret.vault_licence,
-#     kubernetes_secret.prometheus-monitoring-token,
-#     helm_release.prometheus-grafana,
-
-#   ]
-# }
-
-
-
 
 
