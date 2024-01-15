@@ -7,7 +7,7 @@ injector:
 server:
   image:
     repository: hashicorp/vault-enterprise
-    tag: 1.15.2-ent
+    tag: 1.15.4-ent
   dataStorage:
     enabled: true
     size: 1Gi
@@ -71,7 +71,7 @@ server:
 
 
   ha:
-    enabled: false
+    enabled: true
     replicas: 1
 
     raft:
@@ -95,24 +95,10 @@ server:
 
         storage "raft" {
           path = "/vault/data"
-          retry_join {
-            leader_tls_servername = "vault-internal"           
-            leader_api_addr = "https://vault-active:8200"
-            leader_client_cert_file = "/vault/userconfig/vault-ha-tls/vault-playground-cert.crt"
-            leader_client_key_file = "/vault/userconfig/vault-ha-tls/vault-playground-cert.key"
-            leader_ca_cert_file = "/vault/userconfig/vault-ha-tls/vault-playground-cert.ca"
-          }
-
-          autopilot {
-            cleanup_dead_servers = "true"
-            last_contact_threshold = "200ms"
-            last_contact_failure_threshold = "10m"
-            max_trailing_logs = 250000
-            min_quorum = 5
-            server_stabilization_time = "10s"
-          }
-
         }
+
+
+        
 
 
         # Todo: KMS seal

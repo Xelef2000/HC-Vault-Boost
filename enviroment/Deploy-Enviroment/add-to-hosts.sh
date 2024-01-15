@@ -27,6 +27,8 @@ add_ingress_to_hosts "vault-primary" "vault-primary" "vault-primary.vault-boost.
 add_ingress_to_hosts "vault-dr" "vault-dr" "vault-dr.vault-boost.lab"
 add_ingress_to_hosts "vault-autounseal" "vault-autounseal" "vault-autounseal.vault-boost.lab"
 
+add_ingress_to_hosts "vault-ingress-tr-00" "vault-tr-00" "vault-tr-00.vault-boost.lab"
+add_ingress_to_hosts "vault-ingress-tr-01" "vault-tr-01" "vault-tr-01.vault-boost.lab"
 
 
 

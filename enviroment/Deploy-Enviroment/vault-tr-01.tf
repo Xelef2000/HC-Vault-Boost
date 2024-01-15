@@ -1,28 +1,28 @@
 locals {
-  tr_nr_00 = "00"
+  tr_nr_01 = "01"
 }
 
-resource "kubernetes_namespace" "vault_tr_00" {
+resource "kubernetes_namespace" "vault_tr_01" {
   metadata {
     annotations = {
-      name = "vault-tr-${local.tr_nr_00}"
+      name = "vault-tr-${local.tr_nr_01}"
     }
 
-    name = "vault-tr-${local.tr_nr_00}"
+    name = "vault-tr-${local.tr_nr_01}"
   }
 }
 
 
-resource "tls_private_key" "vault_tr_00" {
+resource "tls_private_key" "vault_tr_01" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
-resource "tls_self_signed_cert" "vault_tr_00" {
+resource "tls_self_signed_cert" "vault_tr_01" {
   private_key_pem = tls_private_key.vault.private_key_pem
 
   subject {
-    common_name  = "vault-tr-00.vault-boost.lab"
+    common_name  = "vault-tr-01.vault-boost.lab"
     organization = "vault-boost.lab"
   }
 
@@ -30,7 +30,7 @@ resource "tls_self_signed_cert" "vault_tr_00" {
   validity_period_hours = 1680
 
   ip_addresses = ["127.0.0.1"]
-  dns_names    = ["localhost", "vault", "vault-tr-${local.tr_nr_00}-active", "vault-tr-${local.tr_nr_00}", "vault-tr-${local.tr_nr_00}-internal", "vault-tr-${local.tr_nr_00}-standby", "vault-tr-${local.tr_nr_00}.vault-boost.lab", "vault-tr-${local.tr_nr_00}-active.vault-tr-${local.tr_nr_00}.svc.cluster.local"]
+  dns_names    = ["localhost", "vault", "vault-tr-${local.tr_nr_01}",  "vault-tr-${local.tr_nr_01}.vault-boost.lab"]
 
 
   allowed_uses = [
@@ -43,11 +43,11 @@ resource "tls_self_signed_cert" "vault_tr_00" {
 }
 
 
-resource "kubernetes_secret" "vault_certs_tr_00" {
-  depends_on = [kubernetes_namespace.vault_tr_00]
+resource "kubernetes_secret" "vault_certs_tr_01" {
+  depends_on = [kubernetes_namespace.vault_tr_01]
   metadata {
     name      = "vault-ha-tls"
-    namespace = "vault-tr-${local.tr_nr_00}"
+    namespace = "vault-tr-${local.tr_nr_01}"
   }
   type = "Opaque"
 
@@ -61,12 +61,12 @@ resource "kubernetes_secret" "vault_certs_tr_00" {
 
 
 
-resource "kubernetes_secret" "vault_licence_tr_00" {
-  depends_on = [kubernetes_namespace.vault_tr_00]
+resource "kubernetes_secret" "vault_licence_tr_01" {
+  depends_on = [kubernetes_namespace.vault_tr_01]
 
   metadata {
     name      = "hashicorp-vault-license"
-    namespace = "vault-tr-${local.tr_nr_00}"
+    namespace = "vault-tr-${local.tr_nr_01}"
   }
   type = "Opaque"
 
@@ -77,12 +77,12 @@ resource "kubernetes_secret" "vault_licence_tr_00" {
 
 
 
-resource "helm_release" "vault_tr_00" {
-  name       = "vault-tr-${local.tr_nr_00}"
+resource "helm_release" "vault_tr_01" {
+  name       = "vault-tr-${local.tr_nr_01}"
   repository = "https://helm.releases.hashicorp.com"
   chart      = "vault"
   # version    = var.vault_helm_chart_version
-  namespace = "vault-tr-${local.tr_nr_00}"
+  namespace = "vault-tr-${local.tr_nr_01}"
   wait      = false
 
   values = [
@@ -90,24 +90,24 @@ resource "helm_release" "vault_tr_00" {
   ]
 
   depends_on = [
-    kubernetes_namespace.vault_tr_00,
-    kubernetes_secret.vault_certs_tr_00,
-    kubernetes_secret.vault_licence_tr_00,
+    kubernetes_namespace.vault_tr_01,
+    kubernetes_secret.vault_certs_tr_01,
+    kubernetes_secret.vault_licence_tr_01,
   ]
 }
 
-resource "time_sleep" "vault-sleep_tr_00" {
-  depends_on = [helm_release.vault_tr_00]
+resource "time_sleep" "vault-sleep_tr_01" {
+  depends_on = [helm_release.vault_tr_01]
 
   create_duration = "30s"
 }
 
 
-resource "kubernetes_ingress_v1" "vault-ingress_tr_00" {
-  depends_on = [time_sleep.vault-sleep_tr_00]
+resource "kubernetes_ingress_v1" "vault-ingress_tr_01" {
+  depends_on = [time_sleep.vault-sleep_tr_01]
   metadata {
-    name = "vault-ingress-tr-${local.tr_nr_00}"
-    namespace = "vault-tr-${local.tr_nr_00}"
+    name = "vault-ingress-tr-${local.tr_nr_01}"
+    namespace = "vault-tr-${local.tr_nr_01}"
     annotations = {
       "nginx.ingress.kubernetes.io/ssl-passthrough" = "true"
       "kubernetes.io/ingress.class"                 = "nginx"
@@ -115,14 +115,14 @@ resource "kubernetes_ingress_v1" "vault-ingress_tr_00" {
   }
   spec {
     rule {
-      host = "vault-tr-${local.tr_nr_00}.vault-boost.lab"
+      host = "vault-tr-${local.tr_nr_01}.vault-boost.lab"
       http {
         path {
           path_type = "Prefix"
           path      = "/"
           backend {
             service {
-              name = "vault-tr-${local.tr_nr_00}-active"
+              name = "vault-tr-${local.tr_nr_01}-active"
               port {
                 number = 8200
               }
