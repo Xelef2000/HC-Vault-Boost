@@ -1,0 +1,15 @@
+- name: Install Vault Server
+  hosts: vault-servers
+  gather_facts: True
+  become: true
+  vars:
+    vault_backend: file
+    vault_cluster_disable: True
+    vault_log_level: debug
+    vault_enterprise_premium: True
+    vault_configure_enterprise_license: True
+    vault_license_file: "./license-vault.hclic"
+    vault_version: 1.15.4
+    vault_install_remotely: True
+  roles:
+    - {role: brianshumate.vault}

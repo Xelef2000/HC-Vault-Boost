@@ -12,3 +12,4 @@ enviroment/Vault-Deployment/cluster-keys-dr.json
 enviroment/Deploy-Enviroment/passwords.csv
 enviroment/Deploy-Enviroment/cluster-keys-autounseal.json
 enviroment/Deploy-Enviroment/cluster-keys-dr.json
+exercises/11-operations-vault-ansible/license-vault.hclic
