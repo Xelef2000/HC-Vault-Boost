@@ -10,6 +10,8 @@ resource "kubernetes_namespace" "ns-vault-autounseal" {
 }
 
 resource "kubernetes_secret" "vault_licence_autounseal" {
+  depends_on = [kubernetes_namespace.ns-vault-autounseal]
+
   metadata {
     name      = "hashicorp-vault-license-dr"
     namespace = "vault-autounseal"
