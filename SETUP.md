@@ -22,7 +22,7 @@ Now refresh the argocd deployments:
 kubectl -n infra-argocd port-forward service/argocd-server 8080:443
 ```
 Go to https://localhost:8080 and login with the credentials in the password.csv file.
-Click on "Refresh Apps" select "HARD" abd click on "ALL", then click on Refresh.
+Click on "Refresh Apps" select "HARD" and click on "ALL", then click on Refresh.
 Repeat the process with the "Sync" button.
 
 ``` bash
@@ -35,10 +35,14 @@ Run the following command to add the urls to your /etc/hosts file:
 ./add-tohosts.sh
 ```
 
-## init vaults
+## Init Autounseal and DR vault cluster
+Automatically initialize and unseal the "DR" and "Autounseal" Vault clusters:
 ``` bash
 ./init-vault.sh
 ```
+
+The unseal keys for these two clusters are stored in the
+`cluster-keys-autounseal.json` and `cluster-keys-dr.json` files.
 
 ## Reset environment
 ``` bash
