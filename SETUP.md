@@ -35,10 +35,14 @@ Run the following command to add the urls to your /etc/hosts file:
 ./add-tohosts.sh
 ```
 
-## init vaults
+## Init Autounseal and DR vault cluster
+Automatically initialize and unseal the "DR" and "Autounseal" Vault clusters:
 ``` bash
 ./init-vault.sh
 ```
+
+The unseal keys for these two clusters are stored in the
+`cluster-keys-autounseal.json` and `cluster-keys-dr.json` files.
 
 ## Reset environment
 ``` bash
