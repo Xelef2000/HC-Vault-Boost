@@ -22,7 +22,7 @@ Now refresh the argocd deployments:
 kubectl -n infra-argocd port-forward service/argocd-server 8080:443
 ```
 Go to https://localhost:8080 and login with the credentials in the password.csv file.
-Click on "Refresh Apps" select "HARD" abd click on "ALL", then click on Refresh.
+Click on "Refresh Apps" select "HARD" and click on "ALL", then click on Refresh.
 Repeat the process with the "Sync" button.
 
 ``` bash
