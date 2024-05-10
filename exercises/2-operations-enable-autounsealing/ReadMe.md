@@ -1,8 +1,0 @@
-Enable Auto Unsealing
-=====================
-In this exercise, you will enable auto unsealing for Vault.
-There is a [tutorial](https://learn.hashicorp.com/tutorials/vault/autounseal-transit) available on the HashiCorp Learn platform that you can follow along with.
-Use the auto unseal cluster already deployed on the "vault-auto-unseal" namespace.
-You can find the root token and unseal keys in the cluster-keys-auto-unseal.json file.
-
-Since we can't edit the vault helm chart for this exercise, use argocds value overrides to add the seal stanza to the vault helm chart.
