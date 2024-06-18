@@ -7,7 +7,7 @@ minikube config set memory 8192
 minikube config set cpus 4
 minikube start --driver=kvm2 && minikube addons enable ingress && kubectl patch deployment -n ingress-nginx ingress-nginx-controller --type='json' -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value":"--enable-ssl-passthrough"}]' 
 ```
-If you are using docker replace `kvm2` by `docker` in the `--driver` flag
+If you use docker, replace `kvm2` by `docker` in the `--driver` flag
 
 
 ## Setup Argocd
