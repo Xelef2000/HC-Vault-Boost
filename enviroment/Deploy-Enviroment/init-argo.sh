@@ -6,14 +6,12 @@ cd ..
 
 kubectl apply -f HC-Vault-Boost-argocd-configs/manifests/dev/appprojects/infra-argocd.yaml
 sleep 5
-
-kubectl apply -f HC-Vault-Boost-argocd-configs/manifests/dev/infra-apps.yaml
-sleep 5
-kubectl -n infra-argocd wait pods --selector app.kubernetes.io/instance=argocd --for condition=Ready --timeout=90s
+kubectl apply -f HC-Vault-Boost-argocd-configs/manifests/dev/appprojects/
 sleep 5
 kubectl apply -f HC-Vault-Boost-argocd-configs/manifests/dev/
 sleep 5
-kubectl apply -f HC-Vault-Boost-argocd-configs/manifests/dev/appprojects/appprojects.yaml
+kubectl -n infra-argocd wait pods --selector app.kubernetes.io/instance=argocd --for condition=Ready --timeout=90s
+sleep 5
 
 # get admin password
 echo "argocd, admin , $(kubectl -n infra-argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)" >> passwords.csv
