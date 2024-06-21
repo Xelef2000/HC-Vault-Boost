@@ -19,6 +19,9 @@ resource "kubernetes_secret" "vault_licence" {
   data = {
     "license.hclic" = var.vault-license
   }
+
+  depends_on = [kubernetes_namespace.ns-vault-primary]
+
 }
 
 resource "tls_private_key" "vault" {

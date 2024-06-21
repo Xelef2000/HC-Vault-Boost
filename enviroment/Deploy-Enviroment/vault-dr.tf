@@ -10,6 +10,7 @@ resource "kubernetes_namespace" "ns-vault-dr" {
 }
 
 resource "kubernetes_secret" "vault_licence_dr" {
+  depends_on = [kubernetes_namespace.ns-vault-dr]
   metadata {
     name      = "hashicorp-vault-license-dr"
     namespace = "vault-dr"
