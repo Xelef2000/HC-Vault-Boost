@@ -3,5 +3,4 @@ provider "vault" {
   token_name      = "terraform_root"
   address         = var.VAULT_ADDR
   skip_tls_verify = true
-
 }

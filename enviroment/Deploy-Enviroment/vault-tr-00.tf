@@ -106,11 +106,13 @@ resource "time_sleep" "vault-sleep_tr_00" {
 resource "kubernetes_ingress_v1" "vault-ingress_tr_00" {
   depends_on = [time_sleep.vault-sleep_tr_00]
   metadata {
-    name = "vault-ingress-tr-${local.tr_nr_00}"
+    name      = "vault-ingress-tr-${local.tr_nr_00}"
     namespace = "vault-tr-${local.tr_nr_00}"
     annotations = {
-      "nginx.ingress.kubernetes.io/ssl-passthrough" = "true"
-      "kubernetes.io/ingress.class"                 = "nginx"
+      "nginx.ingress.kubernetes.io/ssl-passthrough"    = "true"
+      "kubernetes.io/ingress.class"                    = "nginx"
+      "nginx.ingress.kubernetes.io/backend-protocol"   = "https"
+      "nginx.ingress.kubernetes.io/force-ssl-redirect" = "true"
     }
   }
   spec {
