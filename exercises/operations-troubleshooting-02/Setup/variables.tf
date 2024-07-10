@@ -5,6 +5,6 @@ variable "VAULT_TOKEN" {
 
 variable "VAULT_ADDR"{
     type = string
-    default = "https://vault-tr-01.vault-boost.lab/"
+    default = "https://vault-tr-02.vault-boost.lab/"
     description = "Vault address"
 }

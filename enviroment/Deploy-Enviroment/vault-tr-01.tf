@@ -30,7 +30,7 @@ resource "tls_self_signed_cert" "vault_tr_01" {
   validity_period_hours = 1680
 
   ip_addresses = ["127.0.0.1"]
-  dns_names    = ["localhost", "vault", "vault-tr-${local.tr_nr_01}",  "vault-tr-${local.tr_nr_01}.vault-boost.lab"]
+  dns_names    = ["localhost", "vault", "vault-tr-${local.tr_nr_01}", "vault-tr-${local.tr_nr_01}.vault-boost.lab"]
 
 
   allowed_uses = [
@@ -106,11 +106,13 @@ resource "time_sleep" "vault-sleep_tr_01" {
 resource "kubernetes_ingress_v1" "vault-ingress_tr_01" {
   depends_on = [time_sleep.vault-sleep_tr_01]
   metadata {
-    name = "vault-ingress-tr-${local.tr_nr_01}"
+    name      = "vault-ingress-tr-${local.tr_nr_01}"
     namespace = "vault-tr-${local.tr_nr_01}"
     annotations = {
-      "nginx.ingress.kubernetes.io/ssl-passthrough" = "true"
-      "kubernetes.io/ingress.class"                 = "nginx"
+      "nginx.ingress.kubernetes.io/ssl-passthrough"    = "true"
+      "kubernetes.io/ingress.class"                    = "nginx"
+      "nginx.ingress.kubernetes.io/backend-protocol"   = "https"
+      "nginx.ingress.kubernetes.io/force-ssl-redirect" = "true"
     }
   }
   spec {

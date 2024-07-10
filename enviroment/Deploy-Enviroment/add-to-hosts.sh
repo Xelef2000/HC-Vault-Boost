@@ -29,6 +29,7 @@ add_ingress_to_hosts "vault-autounseal" "vault-autounseal" "vault-autounseal.vau
 
 add_ingress_to_hosts "vault-ingress-tr-00" "vault-tr-00" "vault-tr-00.vault-boost.lab"
 add_ingress_to_hosts "vault-ingress-tr-01" "vault-tr-01" "vault-tr-01.vault-boost.lab"
+add_ingress_to_hosts "vault-ingress-tr-02" "vault-tr-02" "vault-tr-02.vault-boost.lab"
 
 
 
