@@ -1,5 +1,6 @@
 Enable Auto Unsealing
 =====================
+
 In this exercise, you will enable auto unsealing for Vault.
 There is a [tutorial](https://developer.hashicorp.com/vault/tutorials/auto-unseal/autounseal-transit) available on the HashiCorp Learn platform that you can follow along with.
 Use the auto unseal cluster already deployed on the "vault-auto-unseal" namespace.

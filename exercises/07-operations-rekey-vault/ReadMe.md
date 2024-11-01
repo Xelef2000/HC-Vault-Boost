@@ -1,7 +1,8 @@
 Rekeying Vault
 ===
+
 In this exercise we will rekey the primary vault cluster.
-Rekeying is used to replace the shamir unseal/recovery keys. 
+Rekeying is used to replace the shamir unseal/recovery keys.
 
 If you indeed enabled auto-unsealing in [exercise
 2](../2-operations-enable-autounsealing/ReadMe.md), consider rekeying the

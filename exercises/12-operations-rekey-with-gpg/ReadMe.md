@@ -1,5 +1,6 @@
 Rekeying Vault with GPG
 ===
+
 In this exercise we will rekey the primary vault cluster and encrypt the new recovery keys with gpg.
 You should already be familiar with the [rekeying](https://developer.hashicorp.com/vault/tutorials/operations/rekeying-and-rotating) process.
 
